@@ -1,0 +1,37 @@
+fr:
+  simple_form:
+    yes: Oui
+    no:  Non
+    
+    required:
+      text: required
+      mark: *
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+
+    labels:
+      user:
+        name:                  Nom
+        email:                 E-mail
+        password:              Mot de passe
+        password_confirmation: Confirmation du mot de passe
+      
+      session:
+        email:       E-mail
+        password:    Mot de passe
+        remember_me: Se souvenir de moi
+        
+    hints:
+      user:
+        name:  Le nom que vos adversaires verront.
+        email: Nous ne le communiqueront à personne.
+        
+        
+  helpers:
+    submit:
+      user:
+        create: Je m'inscris !
+        
+      session:
+        submit: Je me connecte !

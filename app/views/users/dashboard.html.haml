@@ -1,0 +1,14 @@
+%h2 Dashboard
+
+%p
+  %strong= current_user.name
+  = link_to t('user.sign_out'), sign_out_path, method: 'delete'
+
+- if @participations.any?
+  %ul
+    - @participations.each do |participation|
+      %li= participation
+      
+- else
+  = render 'first_game'
+
