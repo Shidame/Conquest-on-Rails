@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   MAXIMUM_PARTICIPATIONS_COUNT = 5
+  UNITS_COUNT_AT_BEGINNING     = 25
   
   # States.
   WAITING_FOR_PLAYERS = "WAITING_FOR_PLAYERS"
@@ -36,16 +37,20 @@ class Game < ActiveRecord::Base
   end
   
   
-  # Dispatch the given territories to the given participations.
+  # Dispatch the given territories to the given participations with 1 unit.
   # Both territories and participations should be shuffled.
   def dispatch_territories!(territories, participations)    
     territories.each_with_index do |territory, index|
       realIndex     = index % participations.size
       participation = participations[realIndex]
       
+      participation.units_count -= 1
       Ownership.create game_id:          id,
                        territory_id:     territory.id,
-                       participation_id: participation.id
+                       participation_id: participation.id,
+                       units_count:      1
     end
+    
+    participations.map(&:save!)
   end
 end
