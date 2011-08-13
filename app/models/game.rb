@@ -53,4 +53,9 @@ class Game < ActiveRecord::Base
     
     participations.map(&:save!)
   end
+  
+  
+  def missing_participations_count
+    MAXIMUM_PARTICIPATIONS_COUNT - participations_count
+  end
 end

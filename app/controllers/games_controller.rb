@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  layout 'game'
+  
   # Find an appropriate game for the player.
   def find
     @game = Game.not_full.without(current_user).sample || Game.create

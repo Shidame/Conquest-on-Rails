@@ -4,3 +4,5 @@
     - @territories.each do |territory|
       %area{ shape: "poly", coords: territory.path, href: "##{territory.id}", alt: "" }
       
+#instructions
+  = render "games/#{@game.state.downcase}"

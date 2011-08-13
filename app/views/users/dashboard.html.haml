@@ -7,7 +7,7 @@
 - if @participations.any?
   %ul
     - @participations.each do |participation|
-      %li= participation
+      %li= link_to t('game.label', :identifier => participation.game_id), participation.game
       
 - else
   = render 'first_game'

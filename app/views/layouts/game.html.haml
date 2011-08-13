@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title ConquestOnRailsDev
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    
+  %body
+    %ul
+      %li= link_to "Dashboard", dashboard_path
+      
+    = yield

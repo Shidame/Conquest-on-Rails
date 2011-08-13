@@ -1,4 +1,7 @@
 fr:
+  game:
+    label: Partie %{identifier}
+    
   user:
     sign_up:  Inscrption
     sign_in:  Connexion
