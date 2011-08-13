@@ -14,4 +14,5 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: 'create'
   
   has_many :participations
+  has_many :games, through: :participations
 end
