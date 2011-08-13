@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method :current_user, :debug?
   
   def home
     @user = User.new
@@ -12,5 +12,10 @@ class ApplicationController < ActionController::Base
   def current_user
     return nil unless cookies[:persistence_token]
     @current_user ||= User.find_by_persistence_token(cookies[:persistence_token])
+  end
+  
+  
+  def debug?
+    Rails.env == 'development'
   end
 end
