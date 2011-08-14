@@ -12,7 +12,11 @@ class GamesController < ApplicationController
   
   # Show the game page.
   def show
-    @game = current_user.games.find(params[:id])
-    @territories = Territory.all
+    @participation = current_user.participations.find_by_game_id(params[:id])
+    @ownerships    = @participation.ownerships.includes(:territory, :participation)
+    @game          = @participation.game
+    @territories   = Territory.all
+    
+    render @game.state.downcase
   end
 end

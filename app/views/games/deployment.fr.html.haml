@@ -1,0 +1,8 @@
+#map{ data: { ownerships: json_for_badges(@ownerships) } }
+  = render 'map', territories: @territories
+
+%p
+  Vous avez jusqu'au
+  = l(@game.deployment_finish_at, format: :deployment)
+  pour vous déployer. Après cette date, le système déploiera aléatoirement
+  vos unités sur vos territoires.
