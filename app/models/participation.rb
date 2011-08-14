@@ -3,6 +3,7 @@ class Participation < ActiveRecord::Base
   
   belongs_to :game, :counter_cache => true
   belongs_to :user
+  has_many :ownerships
   
   after_create :try_to_start_deployment
   
@@ -10,7 +11,8 @@ class Participation < ActiveRecord::Base
   private
   
   def try_to_start_deployment
-    if game.participations_count == Game::MAXIMUM_PARTICIPATIONS_COUNT
+    # Reload the game since the in memory version is still the old one.
+    if game.reload.participations_count == Game::MAXIMUM_PARTICIPATIONS_COUNT
       game.start_deployment!
     end
   end

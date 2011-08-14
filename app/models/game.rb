@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
   MAXIMUM_PARTICIPATIONS_COUNT = 5
   UNITS_COUNT_AT_BEGINNING     = 25
+  PLAYER_COLORS                = %w( blue green orange purple yellow )
   
   # States.
   WAITING_FOR_PLAYERS = "WAITING_FOR_PLAYERS"
@@ -33,13 +34,13 @@ class Game < ActiveRecord::Base
     self.state                = Game::DEPLOYMENT
     self.deployment_finish_at = 24.hours.from_now
     save!
-    dispatch_territories!
+    dispatch_territories!(Territory.all.shuffle, participations.shuffle)
   end
   
   
   # Dispatch the given territories to the given participations with 1 unit.
   # Both territories and participations should be shuffled.
-  def dispatch_territories!(territories, participations)    
+  def dispatch_territories!(territories, participations)
     territories.each_with_index do |territory, index|
       real_index    = index % participations.size
       participation = participations[real_index]
@@ -51,7 +52,10 @@ class Game < ActiveRecord::Base
                        units_count:      1
     end
     
-    participations.map(&:save!)
+    participations.each_with_index do |participation, index|
+      participation.color = Game::PLAYER_COLORS[index]
+      participation.save!
+    end
   end
   
   
