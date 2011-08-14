@@ -1,4 +1,10 @@
 fr:
+  blue:   "Bleu"
+  green:  "Vert"
+  orange: "Orange"
+  purple: "Violet"
+  yellow: "Jaune"
+  
   game:
     label: Partie %{identifier}
     

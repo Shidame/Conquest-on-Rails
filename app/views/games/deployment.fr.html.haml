@@ -2,7 +2,12 @@
   = render 'map', territories: @territories
 
 %p
+  Vous êtes le joueur #{t(@participation.color)}.
+
+%p
   Vous avez jusqu'au
-  = l(@game.deployment_finish_at, format: :deployment)
-  pour vous déployer. Après cette date, le système déploiera aléatoirement
-  vos unités sur vos territoires.
+  %strong.deployment_finish_at= l(@game.deployment_finish_at, format: :deployment)
+  pour déployer vos
+  %strong.units_count= @participation.units_count
+  unités. Après cette date, le système déploiera aléatoirement vos unités sur
+  vos territoires.

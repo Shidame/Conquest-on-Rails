@@ -1,0 +1,2 @@
+//= require badges
+//= require map
