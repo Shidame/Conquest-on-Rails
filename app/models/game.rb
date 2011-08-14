@@ -41,8 +41,8 @@ class Game < ActiveRecord::Base
   # Both territories and participations should be shuffled.
   def dispatch_territories!(territories, participations)    
     territories.each_with_index do |territory, index|
-      realIndex     = index % participations.size
-      participation = participations[realIndex]
+      real_index    = index % participations.size
+      participation = participations[real_index]
       
       participation.units_count -= 1
       Ownership.create game_id:          id,
