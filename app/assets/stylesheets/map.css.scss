@@ -5,13 +5,47 @@
   height   : 600px;
   position : relative;
 
-  svg {
-    position : absolute;
-    top      : 0;
-    left     : 0;
-  }
-
   map {
     position : absolute;
+
+    area {
+      outline : none;
+    }
+  }
+
+  #ownerships {
+    list-style: none;
+
+    li {
+      cursor      : pointer;
+      position    : absolute;
+      background  : url('/assets/badges.png') no-repeat 0 -8px;
+      width       : 34px;
+      height      : 34px;
+      text-align  : center;
+      line-height : 34px;
+      font-size   : 12px;
+      color       : #fff;
+    }
+
+    .blue {
+      background-position-x: -8px;
+    }
+
+    .green {
+      background-position-x: -58px;
+    }
+
+    .orange {
+      background-position-x: -108px;
+    }
+
+    .purple {
+      background-position-x: -158px;
+    }
+
+    .yellow {
+      background-position-x: -208px;
+    }
   }
 }

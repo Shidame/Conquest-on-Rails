@@ -1,8 +1,15 @@
-#map{ data: { ownerships: json_for_badges(@ownerships) } }
+#map{ data: { me: @participation.color  } }
   = render 'map', territories: @territories
+  
+  %ul#ownerships
+    - @ownerships.each do |ownership|
+      %li{ class: ownership.participation.color, data: { ownership: json_for_badge(ownership) } }<
+        = ownership.units_count
 
 %p
-  Vous êtes le joueur #{t(@participation.color)}.
+  Vous êtes le joueur 
+  = succeed '.' do
+    %strong= t(@participation.color)
 
 %p
   Vous avez jusqu'au
