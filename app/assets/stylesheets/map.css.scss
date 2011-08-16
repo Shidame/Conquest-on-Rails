@@ -19,7 +19,7 @@
     li {
       cursor      : pointer;
       position    : absolute;
-      background  : url('/assets/badges.png') no-repeat 0 -8px;
+      background  : url('/assets/badges.png') no-repeat;
       width       : 34px;
       height      : 34px;
       text-align  : center;
@@ -29,23 +29,23 @@
     }
 
     .blue {
-      background-position-x: -8px;
+      background-position: -8px -8px;
     }
 
     .green {
-      background-position-x: -58px;
+      background-position: -58px -8px;
     }
 
     .orange {
-      background-position-x: -108px;
+      background-position: -108px -8px;
     }
 
     .purple {
-      background-position-x: -158px;
+      background-position: -158px -8px;
     }
 
     .yellow {
-      background-position-x: -208px;
+      background-position: -208px -8px;
     }
   }
 }
