@@ -10,4 +10,20 @@ module GamesHelper
       color:       ownership.participation.color
     })
   end
+  
+  
+  def json_for_participation(participation)
+    JSON.dump({
+      unitsCount: participation.units_count,
+      color:      participation.color
+    })
+  end
+  
+  
+  def classes_for_badge(ownership)
+    [
+      ownership.participation.color,
+      ownership.participation == current_participation && :mine
+    ]
+  end
 end

@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   layout 'game'
+  helper_method :current_participation
   
   # Find an appropriate game for the player.
   def find
@@ -12,11 +13,17 @@ class GamesController < ApplicationController
   
   # Show the game page.
   def show
-    @participation = current_user.participations.find_by_game_id(params[:id])
-    @game          = @participation.game
-    @ownerships    = @game.ownerships.includes(:territory, :participation)
-    @territories   = Territory.all
+    @game        = current_participation.game
+    @ownerships  = @game.ownerships.includes(:territory, :participation)
+    @territories = Territory.all
     
     render @game.state.downcase
+  end
+  
+  
+  private
+  
+  def current_participation
+    @current_participation ||= current_user.participations.find_by_game_id(params[:id])
   end
 end
