@@ -21,6 +21,7 @@ $ ->
     $list         = $element.parent()
     ownership     = $element.data('ownership')
     $badge        = $("#badge_territory_#{ownership.territoryId}")
+    $link         = $badge.find('a')
     participation = $list.data('participation')
 
     if 0 < participation.unitsCount
@@ -33,4 +34,4 @@ $ ->
         $element.text(remainingUnitsCount)
         participation.unitsCount = remainingUnitsCount
 
-      $badge.text(unitsCount)
+      $link.text(unitsCount)

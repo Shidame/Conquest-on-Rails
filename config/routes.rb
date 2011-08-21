@@ -11,6 +11,8 @@ ConquestOnRailsDev::Application.routes.draw do
   post '/find_game', to: 'games#find', as: 'find_game'
   get  '/games/:id', to: 'games#show', as: 'game'
   
+  post '/ownerships/:id/deploy', to: 'ownerships#deploy', as: 'ownership_deploy'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
