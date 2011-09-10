@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
-    @user.persistence_token = SecureRandom.hex
+    @user.persistence_token = User.generate_persistence_token
     
     if @user.save
       cookies[:persistence_token] = @user.persistence_token

@@ -11,6 +11,7 @@ gem "simple_form"
 gem "arel", "2.1.4"
 gem "squeel"
 gem "default_value_for"
+gem "valium"
 
 # Gems used only for assets and not required
 # in production environments by default.

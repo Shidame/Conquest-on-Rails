@@ -15,4 +15,16 @@ class User < ActiveRecord::Base
   
   has_many :participations
   has_many :games, through: :participations
+  
+  
+  # Generate a persistence token not yet used.
+  def self.generate_persistence_token
+    persistence_tokens = User.scoped.value_of :persistence_token
+    
+    begin
+      persistence_token = SecureRandom.hex
+    end while persistence_tokens.include?(persistence_token)
+    
+    persistence_token
+  end
 end
