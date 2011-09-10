@@ -14,23 +14,27 @@ $ ->
       opacity: opacity
 
 
-  $("#badges li.mine").click (event)->
-    event.preventDefault()
+  $("#badges li").bind 'ajax:beforeSend', (event, xhr, settings)->
+    $element = $(this)
 
-    $element      = $(this)
-    $list         = $element.parent()
-    ownership     = $element.data('ownership')
-    $badge        = $("#badge_territory_#{ownership.territoryId}")
-    participation = $list.data('participation')
+    unless $element.hasClass('mine')
+      xhr.abort()
 
-    if 0 < participation.unitsCount
-      unitsCount = parseInt($badge.text()) + 1
+    else
+      $list         = $element.parent()
+      ownership     = $element.data('ownership')
+      $badge        = $("#badge_territory_#{ownership.territoryId}")
+      $link         = $badge.find('a')
+      participation = $list.data('participation')
 
-      $('.remaining_units_count').each (index, element)->
-        $element            = $(element)
-        remainingUnitsCount = parseInt($element.text()) - 1
+      if 0 < participation.unitsCount
+        unitsCount = parseInt($badge.text()) + 1
 
-        $element.text(remainingUnitsCount)
-        participation.unitsCount = remainingUnitsCount
+        $('.remaining_units_count').each (index, element)->
+          $element            = $(element)
+          remainingUnitsCount = parseInt($element.text()) - 1
 
-      $badge.text(unitsCount)
+          $element.text(remainingUnitsCount)
+          participation.unitsCount = remainingUnitsCount
+
+        $link.text(unitsCount)
