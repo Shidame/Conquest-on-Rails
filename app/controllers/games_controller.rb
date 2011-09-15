@@ -19,11 +19,4 @@ class GamesController < ApplicationController
     
     render @game.state.downcase
   end
-  
-  
-  private
-  
-  def current_participation
-    @current_participation ||= current_user.participations.find_by_game_id(params[:id])
-  end
 end

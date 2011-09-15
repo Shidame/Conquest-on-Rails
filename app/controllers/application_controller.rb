@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
   end
   
   
+  def current_participation
+    @current_participation ||= (
+      game_id = params[:game_id] || params[:id]
+      current_user.participations.find_by_game_id(game_id)
+    )
+  end
+  
+  
   def debug?
     Rails.env == 'development'
   end
