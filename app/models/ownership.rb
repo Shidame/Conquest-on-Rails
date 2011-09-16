@@ -5,7 +5,9 @@ class Ownership < ActiveRecord::Base
   
   
   def deploy_units!(count)
-    increment!               :units_count, count
-    participation.decrement! :units_count, count
+    Ownership.transaction do
+      increment!               :units_count, count
+      participation.decrement! :units_count, count
+    end
   end
 end

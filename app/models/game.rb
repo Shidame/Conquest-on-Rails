@@ -38,6 +38,12 @@ class Game < ActiveRecord::Base
   end
   
   
+  # Is deployment finished?
+  def deployment_finished?
+    deployment_finish_at.past?
+  end
+  
+  
   # Dispatch the given territories to the given participations with 1 unit.
   # Both territories and participations should be shuffled.
   def dispatch_territories!(territories, participations)
@@ -58,7 +64,8 @@ class Game < ActiveRecord::Base
     end
   end
   
-  
+
+  # Number of free slots.
   def missing_participations_count
     MAXIMUM_PARTICIPATIONS_COUNT - participations_count
   end
