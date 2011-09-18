@@ -11,6 +11,7 @@ gem "simple_form"
 gem "squeel"
 gem "default_value_for"
 gem "valium"
+gem "delayed_job"
 
 # Gems used only for assets and not required
 # in production environments by default.
