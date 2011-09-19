@@ -15,26 +15,24 @@ $ ->
 
 
   $("#badges li").bind 'ajax:beforeSend', (event, xhr, settings)->
-    $element = $(this)
+    xhr.abort() unless $(this).hasClass('mine')
 
-    unless $element.hasClass('mine')
-      xhr.abort()
-
-    else
+  $("#badges li").bind 'ajax:success', (event, deploymentSucceed, type)->
+    if deploymentSucceed
+      $element      = $(this)
       $list         = $element.parent()
       ownership     = $element.data('ownership')
       $badge        = $("#badge_territory_#{ownership.territoryId}")
       $link         = $badge.find('a')
       participation = $list.data('participation')
 
-      if 0 < participation.unitsCount
-        unitsCount = parseInt($badge.text()) + 1
+      unitsCount = parseInt($badge.text()) + 1
 
-        $('.remaining_units_count').each (index, element)->
-          $element            = $(element)
-          remainingUnitsCount = parseInt($element.text()) - 1
+      $('.remaining_units_count').each (index, element)->
+        $element            = $(element)
+        remainingUnitsCount = parseInt($element.text()) - 1
 
-          $element.text(remainingUnitsCount)
-          participation.unitsCount = remainingUnitsCount
+        $element.text(remainingUnitsCount)
+        participation.unitsCount = remainingUnitsCount
 
         $link.text(unitsCount)
