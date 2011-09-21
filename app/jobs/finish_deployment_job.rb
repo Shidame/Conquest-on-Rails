@@ -7,8 +7,9 @@ class FinishDeploymentJob
   end
   
   
+  # Start the game only if needed.
   def perform
     game = Game.find(game_id)
-    game.start!
+    game.start! if game.state == Game::DEPLOYMENT
   end
 end
