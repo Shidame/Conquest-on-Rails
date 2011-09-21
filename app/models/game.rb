@@ -41,6 +41,19 @@ class Game < ActiveRecord::Base
     Delayed::Job.enqueue  job, run_at: deployment_finish_at
   end
   
+  
+  # 
+  def start!
+    update_attribute :state, Game::RUNNING
+    dispatch_remaining_units!
+  end
+  
+  
+  # Dispatch units randomly.
+  def dispatch_remaining_units!
+    participations.each do |participation|
+      participation.dispatch_remaining_units!
+    end
   end
   
   

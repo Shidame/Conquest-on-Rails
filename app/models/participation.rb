@@ -8,6 +8,16 @@ class Participation < ActiveRecord::Base
   after_create :try_to_start_deployment
   
   
+  # Dispatch remaining units in owned territories.
+  # Used when the user didn't do it himself during deployment.
+  def dispatch_remaining_units!
+    shuffled_ownerships = ownerships.shuffle
+    1.upto(units_count) do
+      ownerships.sample.deploy_units!(1)
+    end
+  end
+  
+  
   private
   
   def try_to_start_deployment
