@@ -34,11 +34,10 @@ class Game < ActiveRecord::Base
   def start_deployment!
     territories = Territory.all
     date        = Game::DEPLOYMENT_DURATION.from_now
-    job         = FinishDeploymentJob.new(id)
     
     update_attributes!    state: Game::DEPLOYMENT, deployment_finish_at: date
     dispatch_territories! territories.shuffle, participations.shuffle
-    Delayed::Job.enqueue  job, run_at: deployment_finish_at
+    Resque.enqueue_at     deployment_finish_at, FinishDeploymentJob, id
   end
   
   

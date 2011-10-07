@@ -1,17 +1,33 @@
 source "http://rubygems.org"
 
-gem "rails", "3.1.0"
-
-# Bundle edge Rails instead:
-# gem "rails",     :git => "git://github.com/rails/rails.git"
-
+gem "rails", "3.1.1"
 gem "mysql2"
+
+# Template engine.
 gem "haml"
+
+# Simplify the creation of forms.
 gem "simple_form"
+
+# Add sugar to ActiveRecord API.
 gem "squeel"
-gem "default_value_for"
+
+# Define default values for models.
+gem "default_value_for" 
+
+# Get only few properties from models without instantiate them.
 gem "valium"
-gem "delayed_job"
+
+# Handle background and delayed jobs.
+gem "resque"
+gem "resque-scheduler"
+gem "resque-jobs-per-fork"
+
+# Needed to use "has_secure_password"
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Push server.
+gem "juggernaut"
 
 # Gems used only for assets and not required
 # in production environments by default.
