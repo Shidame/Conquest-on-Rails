@@ -7,7 +7,7 @@ gem "mysql2"
 gem "haml"
 
 # Simplify the creation of forms.
-gem "simple_form"
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 # Add sugar to ActiveRecord API.
 gem "squeel"
