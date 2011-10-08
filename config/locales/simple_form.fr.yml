@@ -25,7 +25,7 @@ fr:
     hints:
       user:
         name:  Le nom que vos adversaires verront.
-        email: Nous ne le communiqueront à personne.
+        email: Nous ne le communiqueront à personne, c'est promis !
         
         
   helpers:

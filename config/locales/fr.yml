@@ -1,9 +1,13 @@
 fr:
-  blue:   "Bleu"
-  green:  "Vert"
-  orange: "Orange"
-  purple: "Violet"
-  yellow: "Jaune"
+  blue:   Bleu
+  green:  Vert
+  orange: Orange
+  purple: Violet
+  yellow: Jaune
+  
+  home:      Accueil
+  rules:     Règles
+  dashboard: Dashboard
   
   game:
     label: Partie %{identifier}
@@ -20,11 +24,11 @@ fr:
           attributes:
             name:
               too_short: Le nom doit compter au moins %{count} caractères.
-              too_long: Le nom ne doit pas excéder %{count} caractères.
-              invalid: Le nom ne doit compter que des caractères simples.
+              too_long:  Le nom ne doit pas excéder %{count} caractères.
+              invalid:   Le nom ne doit compter que des caractères simples.
             email:
               invalid: L'email est invalide.
-              blank: L'email doit être renseigné.
+              blank:   L'email doit être renseigné.
             password:
               blank: Le mot de passe doit être renseigné.
             password_confirmation:

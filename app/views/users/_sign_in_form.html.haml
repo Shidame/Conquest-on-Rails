@@ -1,6 +1,6 @@
-= simple_form_for :session, url: sign_in_path do |f|
+= simple_form_for :session, url: sign_in_path, wrapper: "inline" do |f|
   = f.input :email, input_html: { value: flash[:email] }
   = f.input :password
   = f.input :remember_me, as: "boolean", input_html: { checked: flash[:remember_me] }
   
-  = f.button :submit
+  = f.button :submit, class: "primary"

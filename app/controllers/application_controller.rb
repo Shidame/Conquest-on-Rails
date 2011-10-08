@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   
   
   def debug?
-    Rails.env == 'development'
+    Rails.env.development?
   end
 end
