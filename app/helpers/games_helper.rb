@@ -1,4 +1,9 @@
 module GamesHelper
+  def link_to_game(game)
+    link_to t('game.label', :name => game.id), game
+  end
+  
+  
   def json_for_badge(ownership)
     JSON.dump({
       offsets: {

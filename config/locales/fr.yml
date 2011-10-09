@@ -13,7 +13,8 @@ fr:
     sign_in_as: Connexion en tant que…
   
   game:
-    label: Partie %{identifier}
+    join_new_game: Rejoindre une nouvelle partie
+    label:         Partie %{name}
     
   user:
     sign_up:  Inscription
