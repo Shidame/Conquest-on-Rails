@@ -9,6 +9,9 @@ fr:
   rules:     Règles
   dashboard: Dashboard
   
+  debug:
+    sign_in_as: Connexion en tant que…
+  
   game:
     label: Partie %{identifier}
     
