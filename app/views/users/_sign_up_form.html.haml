@@ -1,7 +1,10 @@
-= simple_form_for user do |f|
-  = f.input :name  
-  = f.input :email  
-  = f.input :password
-  = f.input :password_confirmation
-  
-  = f.button :submit
+%h2= t('user.sign_up')
+
+= simple_form_for user, wrapper: "inline" do |f|
+  = field_set_tag do
+    = f.input :name,                  input_html: { class: "span4" }
+    = f.input :email,                 input_html: { class: "span4" }
+    = f.input :password,              input_html: { class: "span4" }, required: true
+    = f.input :password_confirmation, input_html: { class: "span4" }, required: true
+    
+    = f.button :submit, class: "primary"

@@ -1,22 +1,39 @@
 source "http://rubygems.org"
 
-gem "rails", "3.1.0.rc5"
-
-# Bundle edge Rails instead:
-# gem "rails",     :git => "git://github.com/rails/rails.git"
-
+gem "rails", "3.1.1"
 gem "mysql2"
+
+# Template engine.
 gem "haml"
-gem "simple_form"
-gem "arel", "2.1.4"
+
+# Simplify the creation of forms.
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+
+# Add sugar to ActiveRecord API.
 gem "squeel"
-gem "default_value_for"
+
+# Define default values for models.
+gem "default_value_for" 
+
+# Get only few properties from models without instantiate them.
+gem "valium"
+
+# Handle background and delayed jobs.
+gem "resque"
+gem "resque-scheduler"
+gem "resque-jobs-per-fork"
+
+# Needed to use "has_secure_password"
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Push server.
+gem "juggernaut"
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sass-rails", "~> 3.1.0.rc"
-  gem "coffee-rails", "~> 3.1.0.rc"
+  gem "sass-rails"
+  gem "coffee-rails"
   gem "uglifier"
 end
 

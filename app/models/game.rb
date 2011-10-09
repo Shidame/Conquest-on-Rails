@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
   MAXIMUM_PARTICIPATIONS_COUNT = 5
   UNITS_COUNT_AT_BEGINNING     = 25
   PLAYER_COLORS                = %w( blue green orange purple yellow )
+  DEPLOYMENT_DURATION          = 24.hours
   
   # States.
   WAITING_FOR_PLAYERS = "WAITING_FOR_PLAYERS"
@@ -31,10 +32,33 @@ class Game < ActiveRecord::Base
   
   # Assign territories and set the limit time.
   def start_deployment!
-    self.state                = Game::DEPLOYMENT
-    self.deployment_finish_at = 24.hours.from_now
-    save!
-    dispatch_territories!(Territory.all.shuffle, participations.shuffle)
+    territories = Territory.all
+    date        = Game::DEPLOYMENT_DURATION.from_now
+    
+    update_attributes!    state: Game::DEPLOYMENT, deployment_finish_at: date
+    dispatch_territories! territories.shuffle, participations.shuffle
+    Resque.enqueue_at     deployment_finish_at, FinishDeploymentJob, id, queue: ""
+  end
+  
+  
+  # 
+  def start!
+    update_attribute :state, Game::RUNNING
+    dispatch_remaining_units!
+  end
+  
+  
+  # Dispatch units randomly.
+  def dispatch_remaining_units!
+    participations.each do |participation|
+      participation.dispatch_remaining_units!
+    end
+  end
+  
+  
+  # Is deployment finished?
+  def deployment_finished?
+    deployment_finish_at.past?
   end
   
   
@@ -58,7 +82,8 @@ class Game < ActiveRecord::Base
     end
   end
   
-  
+
+  # Number of free slots.
   def missing_participations_count
     MAXIMUM_PARTICIPATIONS_COUNT - participations_count
   end

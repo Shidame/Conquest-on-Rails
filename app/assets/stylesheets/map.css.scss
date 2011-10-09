@@ -25,7 +25,12 @@
       text-align  : center;
       line-height : 34px;
       font-size   : 12px;
-      color       : #fff;
+      
+      a {
+        color           : #fff;
+        display         : block;
+        text-decoration : none;
+      }
     }
 
     .blue {

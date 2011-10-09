@@ -5,9 +5,8 @@ module DebugHelper
   end
   
   def link_to_sign_in_as(user)
-    link_to_unless user == current_user,
-                   user.name,
-                   sign_in_path(session: { email: user.email }),
-                   method: "post"
+    link_to user.name,
+            sign_in_path(session: { email: user.email }),
+            method: "post"
   end
 end

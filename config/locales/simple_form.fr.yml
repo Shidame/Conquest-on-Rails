@@ -5,7 +5,7 @@ fr:
     
     required:
       text: required
-      mark: *
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
@@ -25,13 +25,13 @@ fr:
     hints:
       user:
         name:  Le nom que vos adversaires verront.
-        email: Nous ne le communiqueront à personne.
+        email: "Nous ne le communiqueront à personne, c'est promis !"
         
         
   helpers:
     submit:
       user:
-        create: Je m'inscris !
+        create: "Je m'inscris !"
         
       session:
         submit: Je me connecte !

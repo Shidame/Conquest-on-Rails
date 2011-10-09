@@ -1,0 +1,25 @@
+.topbar
+  .fill
+    .container
+      %h3= link_to "Conquest on Rails", root_path
+      
+      %ul.nav
+        %li= link_to t("home"), root_path
+        %li= link_to t("rules")
+        
+        - if current_user
+          %li= link_to t("dashboard"), dashboard_path
+          
+        - if debug?
+          %li.dropdown{ data: { dropdown: "true" } }
+            = link_to t("debug.sign_in_as"), "#", class: "dropdown-toggle"
+            = render "debug/users_list"
+            
+            
+      .pull-right
+        - if current_user
+          %ul
+            %li.dropdown{ data: { dropdown: "true" } }
+              = link_to current_user.name, "#", class: "dropdown-toggle"
+              %ul.dropdown-menu
+                %li= link_to t("user.sign_out"), sign_out_path, method: "delete"

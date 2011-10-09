@@ -1,14 +1,13 @@
-%h2 Dashboard
-
-%p
-  %strong= current_user.name
-  = link_to t('user.sign_out'), sign_out_path, method: 'delete'
-
-- if @participations.any?
-  %ul
-    - @participations.each do |participation|
-      %li= link_to t('game.label', :identifier => participation.game_id), participation.game
-      
-- else
-  = render 'first_game'
-
+.container
+  .row
+    .span12
+      - if @participations.any?
+        %ul
+          - @participations.each do |participation|
+            = render participation
+            
+        %div
+          = link_to t('game.join_new_game'), find_game_path, :method => :post, class: "btn primary"
+          
+      - else
+        = render 'first_game'
