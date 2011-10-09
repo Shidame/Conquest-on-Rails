@@ -1,14 +1,20 @@
-%h1 Conquest on Rails
-
-- if current_user
-  %p= link_to "Dashboard", dashboard_path
-  
-- else
-  #sign_up
-    %h2= t('user.sign_up')
-    = render 'users/sign_up_form', user: @user
-    
-    
-  #sign_in{ class: flash[:sign_in_error] && 'error' }
-    %h2= t('user.sign_in')
-    = render 'users/sign_in_form'
+.container
+  .row
+    .span7
+      #presentation
+        = render 'application/presentation'
+        
+      %ul#screenshots.media-grid
+        %li= link_to image_tag("http://placehold.it/180x130")
+        %li= link_to image_tag("http://placehold.it/180x130")
+        %li= link_to image_tag("http://placehold.it/180x130")
+        %li= link_to image_tag("http://placehold.it/180x130")
+        
+        
+        
+    .span8.offset1
+      #sign_in
+        = render 'users/sign_in_form'
+        
+      #sign_up
+        = render 'users/sign_up_form', user: @user

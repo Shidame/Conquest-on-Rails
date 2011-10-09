@@ -1,3 +1,27 @@
+html, body {
+  background: #fcfcfc;
+}
+
 body {
-  padding-top: 40px;
+  padding-top: 60px;
+}
+
+#presentation p {
+  text-align: justify;
+}
+
+#screenshots, #sign_up {
+  margin-top: 40px;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}
+
+.orange {
+  background: orange;
 }
