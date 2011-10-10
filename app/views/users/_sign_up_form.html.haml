@@ -2,9 +2,9 @@
 
 = simple_form_for user, wrapper: "inline" do |f|
   = field_set_tag do
-    = f.input :name,                  input_html: { class: "span4" }
-    = f.input :email,                 input_html: { class: "span4" }
-    = f.input :password,              input_html: { class: "span4" }, required: true
-    = f.input :password_confirmation, input_html: { class: "span4" }, required: true
+    = f.input :name,                  input_html: { class: "span5" }
+    = f.input :email,                 input_html: { class: "span5" }
+    = f.input :password,              input_html: { class: "span5" }, required: true
+    = f.input :password_confirmation, input_html: { class: "span5" }, required: true
     
     = f.button :submit, class: "primary"

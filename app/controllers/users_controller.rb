@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   
   
   def dashboard
-    @participations = current_user.participations.all
+    @active_dashboard = true
+    @participations   = current_user.participations.all
   end
 end

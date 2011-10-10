@@ -4,11 +4,11 @@
       %h3= link_to "Conquest on Rails", root_path
       
       %ul.nav
-        %li= link_to t("home"), root_path
+        %li{ class: @active_home && "active" }= link_to t("home"), root_path
         %li= link_to t("rules")
         
         - if current_user
-          %li= link_to t("dashboard"), dashboard_path
+          %li{ class: @active_dashboard && "active" }= link_to t("dashboard"), dashboard_path
           
         - if debug?
           %li.dropdown{ data: { dropdown: "true" } }
