@@ -1,13 +1,13 @@
 %h2= t('user.sign_in')
 
 - if flash[:error]
-  .alert-message.error{  data: { alert: "true" } }
+  .alert-message.error{ data: { alert: "true" } }
     = link_to "×", "#", class: "close"
     %p= t('user.sign_in_fail')
 
 = simple_form_for :session, url: sign_in_path, wrapper: "inline" do |f|
   = field_set_tag do
-    = f.input :email,                      input_html: { value: flash[:email], class: "span4", autofocus: "true" }
-    = f.input :password,                   input_html: { class: "span4" }
+    = f.input :email,    input_html: { class: "span5", value: flash[:email], autofocus: true }
+    = f.input :password, input_html: { class: "span5" }
     
     = f.button :submit, class: "primary"
