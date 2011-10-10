@@ -8,7 +8,7 @@ fr:
   title:     Conquest on Rails, un jeu de conquête par navigateur
   home:      Accueil
   rules:     Manuel du joueur
-  dashboard: Dashboard
+  dashboard: Panneau de contrôle
   
   debug:
     sign_in_as: Connexion en tant que…
