@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :debug?
   
   def home
-    @user = User.new
+    @active_home = true
+    @user        = User.new
   end
   
   
