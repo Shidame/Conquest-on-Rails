@@ -37,7 +37,7 @@ class Game < ActiveRecord::Base
     
     update_attributes!    state: Game::DEPLOYMENT, deployment_finish_at: date
     dispatch_territories! territories.shuffle, participations.shuffle
-    Resque.enqueue_at     deployment_finish_at, FinishDeploymentJob, id, queue: ""
+    Resque.enqueue_at     deployment_finish_at, FinishDeploymentJob, id
   end
   
   
