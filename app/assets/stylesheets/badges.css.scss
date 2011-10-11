@@ -1,0 +1,46 @@
+.badges {
+  li {
+    background  : url('/assets/badges.png') no-repeat;
+    width       : 34px;
+    height      : 34px;
+    text-align  : center;
+    line-height : 34px;
+    font-size   : 12px;
+    
+    a {
+      color           : #fff;
+      display         : block;
+      text-decoration : none;
+    }
+  }
+  
+  
+  .blue {
+    background-position : -8px -8px;
+    color               : #67aaff;
+  }
+  
+  .green {
+    background-position : -58px -8px;
+    color               : #b8ff65;
+  }
+  
+  .orange {
+    background-position : -108px -8px;
+    color               : #ffb459;
+  }
+  
+  .purple {
+    background-position : -158px -8px;
+    color               : #dc73ff;
+  }
+  
+  .yellow {
+    background-position : -208px -8px;
+    color               : #f9ff7c;
+  }
+  
+  .nobody {
+    background-position : -258px -8px;
+  }
+}

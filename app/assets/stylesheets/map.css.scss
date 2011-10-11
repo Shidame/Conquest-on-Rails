@@ -7,50 +7,28 @@
 
   map {
     position : absolute;
-
+    
     area {
       outline : none;
     }
   }
-
-  #badges {
+  
+  .badges {
     list-style: none;
-
+    
     li {
       cursor      : pointer;
       position    : absolute;
-      background  : url('/assets/badges.png') no-repeat;
-      width       : 34px;
-      height      : 34px;
       text-align  : center;
       line-height : 34px;
       font-size   : 12px;
-      
+
       a {
         color           : #fff;
         display         : block;
         text-decoration : none;
       }
     }
-
-    .blue {
-      background-position: -8px -8px;
-    }
-
-    .green {
-      background-position: -58px -8px;
-    }
-
-    .orange {
-      background-position: -108px -8px;
-    }
-
-    .purple {
-      background-position: -158px -8px;
-    }
-
-    .yellow {
-      background-position: -208px -8px;
-    }
+    
   }
 }

@@ -2,11 +2,19 @@ html, body {
   background: #fcfcfc;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 body {
   padding-top: 60px;
 }
 
-#presentation p {
+p {
   text-align: justify;
 }
 
@@ -14,14 +22,17 @@ body {
   margin-top: 40px;
 }
 
-.red {
-  background: red;
-}
 
-.blue {
-  background: blue;
-}
-
-.orange {
-  background: orange;
+.debug {
+  .red {
+    background: red;
+  }
+  
+  .blue {
+    background: blue;
+  }
+  
+  .orange {
+    background: orange;
+  }
 }
