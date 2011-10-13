@@ -29,6 +29,11 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Push server.
 gem "juggernaut"
 
+
+# Build JSON views.
+gem 'rabl'
+gem 'yajl-ruby'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
