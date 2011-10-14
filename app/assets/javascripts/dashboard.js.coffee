@@ -1,11 +1,7 @@
 $ ->
-  window.juggernaut    ||= new Juggernaut()
-  window.subscriptions ||= {}
+  window.juggernaut ||= new Juggernaut()
   
   $('body').delegate '#new_participation a', 'ajax:success', (event, data)->
     channel = "games/#{data.game.id}/joins"
-    
-    unless subscriptions[channel]
-      subscriptions[channel] = true
-      juggernaut.subscribe channel, (data)->
-        console.log("Data received...", data)
+    juggernaut.singleSubscribe channel, (data)->
+      console.log("Data received...", data)

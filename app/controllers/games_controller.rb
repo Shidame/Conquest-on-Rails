@@ -4,10 +4,8 @@ class GamesController < ApplicationController
   
   # Find an appropriate game for the player.
   def find
-    # @game = Game.not_full.without(current_user).sample || Game.create
-    # @game.users << current_user
-    
-    @game = Game.last
+    @game = Game.not_full.without(current_user).sample || Game.create
+    @game.users << current_user
   end
   
   
