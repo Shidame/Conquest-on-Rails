@@ -27,7 +27,8 @@ gem "resque-jobs-per-fork"
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Push server.
-gem "juggernaut"
+# gem "juggernaut"
+gem "juggernaut", :git => "git://github.com/Sephi-Chan/juggernaut.git"
 
 
 # Build JSON views.
