@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
                     presence: true,
                     uniqueness: true
                     
-  validates :password, presence: true, on: 'create'
-  validates :password_confirmation, presence: true, on: 'create'
+  validates_presence_of :password, :password_confirmation, on: :create
   
   has_many :participations
   has_many :games, through: :participations
