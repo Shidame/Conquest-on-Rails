@@ -1,0 +1,8 @@
+#new_participation.participation
+  %h3= t('game.new_game')
+  %div
+    = link_to t('game.start_new_game'), find_game_path, :method => :post, :remote => true, class: "btn primary right span3"
+    
+    %ol.badges
+      - 5.times do
+        %li.nobody

@@ -14,8 +14,13 @@ fr:
     sign_in_as: Connexion en tant que…
   
   game:
-    join_new_game: Rejoindre une nouvelle partie
-    label:         Partie %{name}
+    start_new_game: Commencer une partie
+    label:          Partie %{name}
+    search:         Rechercher des adversaires
+    new_game:       Nouvelle partie
+    resume:         Reprendre la partie
+    waiting:        En attente de joueurs…
+    start:          Commencer à jouer
     
   user:
     sign_up:  Inscription

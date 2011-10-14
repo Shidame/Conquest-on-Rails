@@ -1,0 +1,19 @@
+.participation{ id: dom_id(participation) }
+  %h3= t('game.label', :name => participation.game_id)
+  
+  %div
+    - case participation.game.state
+    - when Game::RUNNING
+      = link_to t('game.resume'), game_path(participation.game_id), class: "btn primary right span3"
+    - when Game::WAITING_FOR_PLAYERS
+      = link_to t('game.waiting'), game_path(participation.game_id), class: "btn right disabled span3"
+      
+    %ol.badges
+      - (participation.game.participations.in_groups_of(5).first).each do |participation|
+        - if participation
+          %li{ class: participation.color }
+            = "•" if participation.user == current_user
+          
+          
+        - else
+          %li.nobody
