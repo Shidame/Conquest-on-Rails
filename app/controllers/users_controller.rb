@@ -14,6 +14,6 @@ class UsersController < ApplicationController
   
   def dashboard
     @active_dashboard = true
-    @participations   = current_user.participations.all
+    @participations   = current_user.participations.includes { game.participations.user }.all
   end
 end
