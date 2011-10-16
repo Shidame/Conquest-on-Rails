@@ -26,7 +26,8 @@ class Game < ActiveRecord::Base
   # Exclude the games in which the user is.
   def self.without(user)
     joins { participations }.
-    where { participations.user_id != user.id }
+    where { participations.game_id.not_in(user.game_ids) })
+    where { participations.game_id.not_in(user.game_ids) }
   end
   
   
