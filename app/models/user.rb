@@ -26,4 +26,13 @@ class User < ActiveRecord::Base
     
     persistence_token
   end
+  
+  
+  # Find an appropriate game for the user.
+  def send_in_game!
+    User.transaction do
+      game = Game.not_full.without(self).sample || Game.create
+      game.add!(self)
+    end
+  end
 end

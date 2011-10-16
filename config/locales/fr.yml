@@ -14,13 +14,14 @@ fr:
     sign_in_as: Connexion en tant que…
   
   game:
-    start_new_game: Commencer une partie
-    label:          Partie %{name}
-    search:         Rechercher des adversaires
-    new_game:       Nouvelle partie
-    resume:         Reprendre la partie
-    waiting:        En attente de joueurs…
-    start:          Commencer à jouer
+    start_new_game:   Commencer une partie
+    looking_for_game: Recherche…
+    label:            Partie %{name}
+    search:           Rechercher des adversaires
+    new_game:         Nouvelle partie
+    resume:           Reprendre la partie
+    waiting:          En attente de joueurs…
+    start_playing:    Commencer à jouer
     
   user:
     sign_up:  Inscription

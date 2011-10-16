@@ -42,6 +42,23 @@ class Game < ActiveRecord::Base
   
   
   # 
+  def next_color
+    Game::PLAYER_COLORS[participations.count]
+  end
+  
+  
+  # Add the user to the game.
+  def add!(user)
+    participation = participations.create! color: next_color, user: user
+    delay_game_start if participations.count == Game::MAXIMUM_PARTICIPATIONS_COUNT
+    participation
+  end
+  
+  
+  # Enqueue the deployment process.
+  def delay_game_start
+    Resque.enqueue(StartGameJob, id)
+  end
   def start!
     update_attribute :state, Game::RUNNING
     dispatch_remaining_units!

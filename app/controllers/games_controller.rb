@@ -4,10 +4,13 @@ class GamesController < ApplicationController
   
   # Find an appropriate game for the player.
   def find
-    @game = Game.not_full.without(current_user).sample || Game.create
-    @game.users << current_user
+    @participation = current_user.send_in_game!
+    Juggernaut.publish("games/#{@participation.game_id}/joins", {
+      color:  @participation.color,
+      gameId: @participation.game_id
+    })
     
-    redirect_to @game
+    redirect_to dashboard_path
   end
   
   

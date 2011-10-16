@@ -1,19 +1,25 @@
-.participation{ id: dom_id(participation) }
+.participation{ id: dom_id(participation), data: { game: participation.game_id } }
   %h3= t('game.label', :name => participation.game_id)
   
   %div
     - case participation.game.state
     - when Game::RUNNING
-      = link_to t('game.resume'), game_path(participation.game_id), class: "btn primary right span3"
+      = link_to t('game.resume'),
+                game_path(participation.game_id),
+                class: "btn primary right span3"
+                
     - when Game::WAITING_FOR_PLAYERS
-      = link_to t('game.waiting'), game_path(participation.game_id), class: "btn right disabled span3"
+      = link_to t('game.waiting'),
+                game_path(participation.game_id),
+                class: "btn right disabled span3",
+                data: { "enable-with" => t('game.start_playing') }
       
     %ol.badges
-      - (participation.game.participations.in_groups_of(5).first).each do |participation|
+      - (participation.game.participations.in_groups_of(5).first).each_with_index do |participation, index|
         - if participation
           %li{ class: participation.color }
             = "•" if participation.user == current_user
           
           
         - else
-          %li.nobody
+          %li.nobody{ class: "#{Game::PLAYER_COLORS[index]}_placeholder" }

@@ -5,8 +5,6 @@ class Participation < ActiveRecord::Base
   belongs_to :user
   has_many :ownerships
   
-  after_create :try_to_start_deployment
-  
   
   # Dispatch remaining units in owned territories.
   # Used when the user didn't do it himself during deployment.
@@ -16,16 +14,6 @@ class Participation < ActiveRecord::Base
       1.upto(units_count) do
         ownerships.sample.deploy_units!(1)
       end
-    end
-  end
-  
-  
-  private
-  
-  def try_to_start_deployment
-    # Reload the game since the in memory version is still the old one.
-    if game.reload.participations_count == Game::MAXIMUM_PARTICIPATIONS_COUNT
-      game.start_deployment!
     end
   end
 end
