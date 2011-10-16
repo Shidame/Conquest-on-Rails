@@ -7,5 +7,10 @@ class StartGameJob
     territories = Territory.all.shuffle
     
     game.start!(territories)
+    
+    Juggernaut.publish("games/#{game.id}", {
+      eventType: "START",
+      gameId:    game.id
+    })
   end
 end
