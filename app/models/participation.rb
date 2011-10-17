@@ -8,6 +8,11 @@ class Participation < ActiveRecord::Base
   default_value_for :alive, true
   
   
+  def self.alive
+    where { alive == true }
+  end
+  
+  
   # Dispatch remaining units in owned territories.
   # Used when the user didn't do it himself during deployment.
   def dispatch_remaining_units!

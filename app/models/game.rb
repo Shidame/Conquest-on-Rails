@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
   MAXIMUM_PARTICIPATIONS_COUNT = 5
   UNITS_COUNT_AT_BEGINNING     = 25
   PLAYER_COLORS                = %w( blue green orange purple yellow )
+  TURN_DURATION                = 24.hours
   
   # States.
   WAITING_FOR_PLAYERS = "WAITING_FOR_PLAYERS"
@@ -13,6 +14,8 @@ class Game < ActiveRecord::Base
   has_many :ownerships,     dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :users,          through: :participations
+  
+  belongs_to :active_participation, :class_name => "Participation"
   
   
   # Keep games with free slots.
@@ -33,9 +36,21 @@ class Game < ActiveRecord::Base
   end
   
   
+  def next_position
+    participations.count + 1
+  end
+  
+  
+  # Return the next participation.
+  def next_participation
+    ids = participations.alive.order(:position).map(&:id)
+    # ...
+  end
+  
+  
   # Add the user to the game.
   def add!(user)
-    participation = participations.create! color: next_color, user: user
+    participation = participations.create!(color: next_color, user: user, position: next_position)
     delay_game_start if participations.count == Game::MAXIMUM_PARTICIPATIONS_COUNT
     participation
   end
@@ -61,10 +76,22 @@ class Game < ActiveRecord::Base
       end
       
       participations.map(&:dispatch_remaining_units!)
-      update_attribute(:state, Game::RUNNING)
+      
+      self.turn                 = 1
+      self.state                = Game::RUNNING
+      self.turn_finish_at       = TURN_DURATION.from_now
+      self.active_participation = participations.find_by_position(1)
+      save!
     end
     
     self
+  end
+  
+  
+  def next_turn!
+    self.turn                 += 1
+    self.active_participation  = next_participation
+    save!
   end
   
   
