@@ -1,0 +1,7 @@
+.container#running
+  #map{ data: { me: current_participation.color  } }
+    = render 'map', territories: @territories
+    
+    %ul.badges{ data: { participation: json_for_participation(current_participation) } }
+      - @ownerships.each do |ownership|
+        = render 'badge', ownership: ownership

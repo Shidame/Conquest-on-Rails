@@ -44,3 +44,20 @@
     background-position : -258px -8px;
   }
 }
+
+#map {
+  #badges {
+    position : repeat;
+    
+    li {
+      position : absolute;
+    }
+  }
+}
+
+<% Territory.all.each do |territory| %>
+  #badge_territory_<%= territory.id %> {
+    top  : <%= territory.badge_offset_y - 34/2 %>px;
+    left : <%= territory.badge_offset_x - 34/2 %>px;
+  }
+<% end %>
