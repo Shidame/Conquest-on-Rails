@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918043748) do
+ActiveRecord::Schema.define(:version => 20111017143243) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(:version => 20110918043748) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deployment_finish_at"
+    t.integer  "active_participation_id"
+    t.datetime "turn_finish_at"
+    t.integer  "turn",                    :default => 0
   end
 
   create_table "ownerships", :force => true do |t|

@@ -43,8 +43,11 @@ class Game < ActiveRecord::Base
   
   # Return the next participation.
   def next_participation
-    ids = participations.alive.order(:position).map(&:id)
-    # ...
+    alive_participations = participations.alive.order(:position)
+    index                = alive_participations.index(active_participation)
+    new_index            = (index + 1) % alive_participations.size
+    
+    alive_participations[new_index]
   end
   
   
@@ -88,6 +91,7 @@ class Game < ActiveRecord::Base
   end
   
   
+  # Change the turn of the game.
   def next_turn!
     self.turn                 += 1
     self.active_participation  = next_participation
