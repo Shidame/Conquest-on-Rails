@@ -73,8 +73,6 @@ class Game < ActiveRecord::Base
         participation_index = index % participations.size
         participation       = participations[participation_index]
         
-        participation.units_count -= 1
-        
         ownerships.create!(territory: territory, participation: participation, units_count: 1)
       end
       

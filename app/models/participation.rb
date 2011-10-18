@@ -19,5 +19,7 @@ class Participation < ActiveRecord::Base
     units_count.times do
       ownerships.sample.deploy_units!(1)
     end
+    
+    update_attribute(:units_count, 0)
   end
 end
