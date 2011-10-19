@@ -17,9 +17,10 @@ class GamesController < ApplicationController
   
   # Show the game page.
   def show
-    @game        = current_participation.game
-    @ownerships  = @game.ownerships.includes(:territory, :participation)
-    @territories = Territory.all
+    @game           = current_participation.game
+    @participations = @game.participations.includes(:user, :ownerships)
+    @ownerships     = @game.ownerships.includes(:territory, :participation)
+    @territories    = Territory.all
     
     render @game.state.downcase
   end
