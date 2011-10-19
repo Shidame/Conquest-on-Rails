@@ -2,6 +2,24 @@
   #map{ data: { me: current_participation.color  } }
     = render 'map', territories: @territories
     
-    %ul.badges{ data: { participation: json_for_participation(current_participation) } }
+    %ul.badges
       - @ownerships.each do |ownership|
         = render 'badge', ownership: ownership
+        
+        
+  #players
+    %table.zebra-striped
+      %thead
+        %tr
+          %th= t('game.player_name')
+          %th= t('game.territories_count')
+          %th= t('game.units_count')
+          
+      %tbody
+        - @participations.each do |participation|
+          %tr{ class: participation.id == @game.active_participation.id && "current"}
+            %td{ class: participation.color }
+              %span
+                = participation.user.name
+            %td= participation.ownerships.size
+            %td= participation.ownerships.to_a.sum(&:units_count)
