@@ -14,12 +14,8 @@ class Participation < ActiveRecord::Base
   
   
   # Dispatch remaining units in owned territories.
-  # Used when the user didn't do it himself during deployment.
   def dispatch_remaining_units!
-    # There is 1 unit already deployed on each owned territory.
-    remainings_units_count = units_count - ownerships.count
-    
-    remainings_units_count.times do
+    units_count.times do
       ownerships.sample.deploy_units!(1)
     end
     

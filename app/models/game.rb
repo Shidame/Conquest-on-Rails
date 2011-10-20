@@ -66,17 +66,10 @@ class Game < ActiveRecord::Base
   
   
   # Dispatch the territories to the participants and deploy few units on them.
-  def start!(territories)
+  def start!
     Game.transaction do
-      territories.each_with_index do |territory, index|
-        # Implement a round-robin through participations.
-        participation_index = index % participations.size
-        participation       = participations[participation_index]
-        
-        ownerships.create!(territory: territory, participation: participation, units_count: 1)
-      end
-      
-      participations.map(&:dispatch_remaining_units!)
+      dispatch_territories!
+      dispatch_remaining_units!
       
       self.turn                 = 1
       self.state                = Game::RUNNING
@@ -86,6 +79,27 @@ class Game < ActiveRecord::Base
     end
     
     self
+  end
+  
+  
+  # Dispatch the territories to the players.
+  def dispatch_territories!
+    territories = Territory.all
+    
+    territories.each_with_index do |territory, index|
+      # Implement a round-robin through participations.
+      participation_index = index % participations.size
+      participation       = participations[participation_index]
+      
+      ownerships.create!(territory: territory, participation: participation, units_count: 1)
+      participation.decrement!(:units_count)
+    end
+  end
+  
+  
+  # Dispatch the remaining units of each player across its territories.
+  def dispatch_remaining_units!
+    participations.map(&:dispatch_remaining_units!)
   end
   
   
