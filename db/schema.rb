@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017143243) do
+ActiveRecord::Schema.define(:version => 20111020214253) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(:version => 20111017143243) do
     t.integer  "active_participation_id"
     t.datetime "turn_finish_at"
     t.integer  "turn",                    :default => 0
+  end
+
+  create_table "neighbourhoods", :force => true do |t|
+    t.integer  "territory_id"
+    t.integer  "other_territory_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ownerships", :force => true do |t|
