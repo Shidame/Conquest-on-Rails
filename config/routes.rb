@@ -12,6 +12,7 @@ ConquestOnRailsDev::Application.routes.draw do
   get  '/games/:id',  to: 'games#show', as: 'game'
   
   scope '/games/:game_id' do
+    post '/ownerships/:id/attack', to: 'ownerships#attack', as: 'ownership_attack'
     post '/ownerships/:id/deploy', to: 'ownerships#deploy', as: 'ownership_deploy'
   end
   

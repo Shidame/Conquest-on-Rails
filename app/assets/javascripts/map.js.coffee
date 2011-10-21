@@ -52,7 +52,14 @@ $ ->
           $target.attr("data-state", "useless")
           $target.animate({ opacity: 0.3 }, animationSpeed)
           
-    false
+          
+          
+  $("body").delegate ".badges li[data-state='targetable']", "click", ->
+    $target    = $(this)
+    attackPath = $target.data("attack_path")
+    
+    $.post(attackPath)
+    
     
     
   badgeDomIdToId = (domId)->
