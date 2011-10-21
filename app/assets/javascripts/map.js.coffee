@@ -1,38 +1,41 @@
 $ ->
-  myColor = $('#map').data('me')
+  myColor        = $('#map').data('me')
+  animationSpeed = 300
   
-  $("#badges li").each (index, element)->
-    $element  = $(element)
-    $list     = $element.parent()
-    ownership = $element.data('ownership')
-    opacity   = if myColor == ownership.color then 1 else 0.55
+  
+  $('.badges .mine').click (event)->
+    $attacker    = $(this)
+    attackerId   = badgeDomIdToId($attacker.attr('id'))
+    neighbourIds = $attacker.data('neighbour_ids')
     
-    shift ?= $element.width() / 2
-    $element.css
-      left:    ownership.offsets.x - shift
-      top:     ownership.offsets.y - shift
-      opacity: opacity
+    $(".badges li").each (index, el)->
+      $target  = $(el)
+      targetId = badgeDomIdToId($target.attr('id'))
       
+      isAttacker   = attackerId == targetId
       
-  $("#badges li").bind 'ajax:beforeSend', (event, xhr, settings)->
-    xhr.abort() unless $(this).hasClass('mine')
-    
-    
-  $("#badges li").bind 'ajax:success', (event, deploymentSucceed, type)->
-    if deploymentSucceed
-      $element      = $(this)
-      $list         = $element.parent()
-      ownership     = $element.data('ownership')
-      $badge        = $("#badge_territory_#{ownership.territoryId}")
-      $link         = $badge.find('a')
-      participation = $list.data('participation')
-      unitsCount    = parseInt($badge.text()) + 1
+      isEnemy      = !$target.hasClass("mine")
+      isNeighbour  = $.inArray(targetId, neighbourIds) != -1
+      isAttackable = isEnemy && isNeighbour
       
-      $link.text(unitsCount)
-      
-      $('.remaining_units_count').each (index, element)->
-        $element            = $(element)
-        remainingUnitsCount = parseInt($element.text()) - 1
+      if isAttacker
+        # The attacker is highlighted.
+        $target.animate({ opacity: 1 }, animationSpeed)
         
-        $element.text(remainingUnitsCount)
-        participation.unitsCount = remainingUnitsCount
+      else if isAttackable
+        # Attackable territories are highlighted too.
+        $target.animate({ opacity: 1 }, animationSpeed)
+        
+      else unless isEnemy
+        # Player's territories are still quite visible.
+        $target.animate({ opacity: 0.75 }, animationSpeed)
+        
+      else
+        # Other are less visible.
+        $target.animate({ opacity: 0.3 }, animationSpeed)
+        
+    false
+    
+    
+  badgeDomIdToId = (domId)->
+    parseInt(domId.replace("badge_territory_", ""))

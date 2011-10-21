@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   def show
     @game           = current_participation.game
     @participations = @game.participations.includes(:user, :ownerships)
-    @ownerships     = @game.ownerships.includes(:territory, :participation)
+    @ownerships     = @game.ownerships.includes { [ territory.neighbours, participation ] }
     @territories    = Territory.all
     
     render @game.state.downcase
