@@ -3,7 +3,7 @@ $ ->
   animationSpeed = 300
   
   
-  $(".badges .mine").click (event)->
+  $("body").delegate ".badges .mine", "click", ->
     $attacker    = $(this)
     attackerId   = badgeDomIdToId($attacker.attr("id"))
     
@@ -12,7 +12,7 @@ $ ->
     canAttack    = 1 < unitsCount
     
     # Go back to the global view if the user click again on the territory.
-    currentAttackerState = $attacker.data("state") || null
+    currentAttackerState = $attacker.attr("data-state") || null
     useGlobalView        = currentAttackerState == "attacker"
     
     $(".badges li").each (index, el)->
@@ -21,7 +21,7 @@ $ ->
       
       # The global view doesn't highlight any territory.
       if useGlobalView
-        $target.removeData("state")
+        $target.attr("data-state", null)
         $target.animate({ opacity: 1 }, animationSpeed)
         
       # The attack view changes territories appearance according to their
@@ -31,25 +31,25 @@ $ ->
         isEnemy      = !$target.hasClass("mine")
         isNeighbour  = $.inArray(targetId, neighbourIds) != -1
         isAttackable = isEnemy && isNeighbour && canAttack
-      
+        
         # The attacker is highlighted.
         if isAttacker
-          $target.data("state", "attacker")
+          $target.attr("data-state", "attacker")
           $target.animate({ opacity: 1 }, animationSpeed)
-        
+          
         # Attackable territories are highlighted too.
         else if isAttackable
-          $target.data("state", "targetable")
+          $target.attr("data-state", "targetable")
           $target.animate({ opacity: 1 }, animationSpeed)
-        
+          
         # Player"s territories are still quite visible.
         else unless isEnemy
-          $target.data("state", "ally")
+          $target.attr("data-state", "ally")
           $target.animate({ opacity: 0.75 }, animationSpeed)
-        
+          
         # Other are less visible.
         else
-          $target.data("state", "useless")
+          $target.attr("data-state", "useless")
           $target.animate({ opacity: 0.3 }, animationSpeed)
           
     false
