@@ -54,6 +54,15 @@ $ ->
           
           
           
+  # Return to the global view when a non-attackable territory is clicked.
+  $("body").delegate ".badges li[data-state='useless']", "click", ->
+    $(".badges li").each (index, el)->
+      $target = $(el)
+      $target.attr("data-state", null)
+      $target.animate({ opacity: 1 }, animationSpeed)
+      
+      
+      
   $("body").delegate ".badges li[data-state='targetable']", "click", ->
     $target    = $(this)
     attackPath = $target.data("attack_path")
