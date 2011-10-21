@@ -6,32 +6,34 @@ $ ->
   $('.badges .mine').click (event)->
     $attacker    = $(this)
     attackerId   = badgeDomIdToId($attacker.attr('id'))
+    
     neighbourIds = $attacker.data('neighbour_ids')
+    unitsCount   = $attacker.data('units_count')
+    canAttack    = 1 < unitsCount
     
     $(".badges li").each (index, el)->
-      $target  = $(el)
-      targetId = badgeDomIdToId($target.attr('id'))
+      $target      = $(el)
+      targetId     = badgeDomIdToId($target.attr('id'))
       
       isAttacker   = attackerId == targetId
-      
       isEnemy      = !$target.hasClass("mine")
       isNeighbour  = $.inArray(targetId, neighbourIds) != -1
-      isAttackable = isEnemy && isNeighbour
+      isAttackable = isEnemy && isNeighbour && canAttack
       
+      # The attacker is highlighted.
       if isAttacker
-        # The attacker is highlighted.
         $target.animate({ opacity: 1 }, animationSpeed)
         
+      # Attackable territories are highlighted too.
       else if isAttackable
-        # Attackable territories are highlighted too.
         $target.animate({ opacity: 1 }, animationSpeed)
         
+      # Player's territories are still quite visible.
       else unless isEnemy
-        # Player's territories are still quite visible.
         $target.animate({ opacity: 0.75 }, animationSpeed)
         
+      # Other are less visible.
       else
-        # Other are less visible.
         $target.animate({ opacity: 0.3 }, animationSpeed)
         
     false

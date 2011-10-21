@@ -1,4 +1,5 @@
 %li{ id:    dom_id(ownership.territory, :badge),
      class: classes_for_badge(ownership),
-     data:  { neighbour_ids: ownership.territory.neighbour_ids } }
+     data:  { neighbour_ids: ownership.territory.neighbour_ids,
+              units_count:   ownership.units_count } }
   = link_to ownership.units_count, ownership_deploy_path(@game, ownership), method: 'post', remote: true
