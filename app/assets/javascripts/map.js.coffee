@@ -2,7 +2,11 @@ $ ->
   myColor        = $("#map").data("me")
   animationSpeed = 300
   
-  
+  $("map area").click ->
+    false
+    
+    
+    
   $("body").delegate ".badges .mine", "click", ->
     $attacker    = $(this)
     attackerId   = badgeDomIdToId($attacker.attr("id"))
