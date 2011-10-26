@@ -32,3 +32,38 @@
     
   }
 }
+
+#attack_box {
+  width      : 60px;
+  height     : 60px;
+  background : url("/assets/spinner.png");
+  position   : relative;
+  
+  .minus, .plus, span {
+    z-index  : 99;
+    position : absolute;
+    cursor   : pointer;
+    color    : #f2f2f2;
+    top      : 20px;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .minus {
+    left : 11px;
+  }
+  
+  .plus {
+    left : 42px;
+  }
+  
+  span {
+    z-index    : 50;
+    width      : 60px;
+    cursor     : default;
+    text-align : center;
+  }
+}
+
