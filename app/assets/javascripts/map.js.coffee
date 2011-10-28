@@ -8,6 +8,8 @@ $ ->
     
     
   $("body").delegate ".badges .mine", "click", ->
+    hideAttackBox()
+    
     $attacker    = $(this)
     attackerId   = badgeDomIdToId($attacker.attr("id"))
     
@@ -60,6 +62,8 @@ $ ->
           
   # Return to the global view when a non-attackable territory is clicked.
   $("body").delegate ".badges li[data-state='useless']", "click", ->
+    hideAttackBox()
+    
     $(".badges li").each (index, el)->
       $target = $(el)
       $target.attr("data-state", null)
@@ -104,6 +108,12 @@ $ ->
       
       
       
+  hideAttackBox = ->
+    $("#attack_box").fadeOut animationSpeed, ->
+      $(this).remove()
+    
+    
+    
   # Build the widget to chose the number of attackers.
   buildSpinner = ($attacker, $target)->
     attackerUnitsCount    = $attacker.data("units_count")
