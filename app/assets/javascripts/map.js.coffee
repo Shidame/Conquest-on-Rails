@@ -78,7 +78,7 @@ $ ->
     $target    = $(this)
     targetId   = badgeDomIdToId($target.attr("id"))
     
-    attackPath = $target.data("attack_path")
+    $target.attr("data-state", "targeted")
     
     $(".badges li[data-state='targetable']").each (index, el)->
       $targetable  = $(el)
@@ -90,6 +90,15 @@ $ ->
         
     $attackBox = buildAttackBox($attacker, $target)
     
+    
+    
+  $("body").delegate ".badges li[data-state='targeted']", "click", (event)->
+    $attacker  = $(".badges li[data-state='attacker']")
+    $target    = $(this)
+    targetId   = badgeDomIdToId($target.attr("id"))
+    path       = $target.data("attack_path")
+    
+    $.post(path, target_id: targetId)
     
     
   # Extract the territory id from the badge DOM id.
