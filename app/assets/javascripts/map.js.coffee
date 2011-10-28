@@ -93,12 +93,16 @@ $ ->
     
     
   $("body").delegate ".badges li[data-state='targeted']", "click", (event)->
-    $attacker  = $(".badges li[data-state='attacker']")
-    $target    = $(this)
-    targetId   = badgeDomIdToId($target.attr("id"))
-    path       = $target.data("attack_path")
+    $attacker      = $(".badges li[data-state='attacker']")
+    $target        = $(this)
+    targetId       = badgeDomIdToId($target.attr("id"))
+    path           = $target.data("attack_path")
+    attackersCount = getAttackBoxValue()
     
-    $.post(path, target_id: targetId)
+    $.post(path, target_id: targetId, attackers_count: attackersCount)
+    
+    # Go back to the global view.
+    $attacker.trigger('click')
     
     
   # Extract the territory id from the badge DOM id.
@@ -123,6 +127,11 @@ $ ->
       
       
       
+  getAttackBoxValue= ->
+    parseInt($("#attack_box span").text())
+    
+    
+    
   # Build the widget to chose the number of attackers.
   buildSpinner = ($attacker, $target)->
     attackerUnitsCount    = $attacker.data("units_count")
