@@ -1,6 +1,7 @@
 .container#running
-  #map{ data: { me: current_participation.color  } }
+  #map{ data: { me: current_participation.color } }
     = render 'map', territories: @territories
+    .credits Gerwin Broers
     
     %ul.badges
       - @ownerships.each do |ownership|
