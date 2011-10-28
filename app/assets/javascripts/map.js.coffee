@@ -101,9 +101,9 @@ $ ->
   # Find the attacker box in the DOM or create it.
   findOrCreateAttackBox = ->
     if $("#attack_box")[0]
-      $("#attack_box").css(position: "absolute")
+      $("#attack_box")
     else
-      $el = $("<div />", id: "attack_box")
+      $el = $("<div />", id: "attack_box").hide()
       $el.appendTo($("body"))
       
       
@@ -111,9 +111,9 @@ $ ->
   hideAttackBox = ->
     $("#attack_box").fadeOut animationSpeed, ->
       $(this).remove()
-    
-    
-    
+      
+      
+      
   # Build the widget to chose the number of attackers.
   buildSpinner = ($attacker, $target)->
     attackerUnitsCount    = $attacker.data("units_count")
@@ -153,6 +153,7 @@ $ ->
     
     $box
       .html($content)
+      .fadeIn(animationSpeed)
       .position
         my: "left"
         at: "right"
