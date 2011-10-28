@@ -96,7 +96,7 @@ $ ->
     $attacker      = $(".badges li[data-state='attacker']")
     $target        = $(this)
     targetId       = badgeDomIdToId($target.attr("id"))
-    path           = $target.data("attack_path")
+    path           = $attacker.data("attack_path")
     attackersCount = getAttackBoxValue()
     
     $.post(path, target_id: targetId, attackers_count: attackersCount)
