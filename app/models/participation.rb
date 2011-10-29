@@ -13,6 +13,11 @@ class Participation < ActiveRecord::Base
   end
   
   
+  def active?
+    game.active_participation_id == id
+  end
+  
+  
   # Dispatch remaining units in owned territories.
   def dispatch_remaining_units!
     units_count.times do
