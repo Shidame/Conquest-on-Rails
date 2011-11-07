@@ -17,14 +17,14 @@ describe Attack do
     }
     
     describe "#resolve!" do
-      let(:attack){
+      let(:resolved_attack){
         attack = Attack.new(attacker, target, 6)
         attack.resolve!
         attack
       }
       
       it "should have a winner" do
-        attack.winner.should_not be_nil
+        resolved_attack.winner.should_not be_nil
       end
     end
   end
