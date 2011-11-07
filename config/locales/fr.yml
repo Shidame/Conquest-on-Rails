@@ -44,6 +44,7 @@ fr:
               blank:   L'email doit être renseigné.
             password:
               blank: Le mot de passe doit être renseigné.
+              confirmation: La confirmation ne correspond pas.
             password_confirmation:
               blank: Le mot de passe doit être confirmé !
               

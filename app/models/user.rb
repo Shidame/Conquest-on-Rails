@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
                     uniqueness: true
                     
   validates_presence_of :password, :password_confirmation, on: :create
+  validates_confirmation_of :password, on: :create
   
   has_many :participations
   has_many :games, through: :participations
